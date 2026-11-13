@@ -2,7 +2,7 @@
 
 ## Quick start
 
-On the machine running your Paseo daemon, clone and prepare the plugin. 
+On the machine running your Paseo daemon, clone and prepare the plugin.
 
 ```bash
 gh repo clone ywy50/paseo-claude-auth-switch
