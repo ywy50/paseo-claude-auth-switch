@@ -18,7 +18,7 @@
   "license": "MIT",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "node --import tsx --test test.mjs test-client.mjs"
+    "test": "node --import tsx --test test.mjs test-client.mjs test-release.mjs"
   },
   "repository": {
     "type": "git",

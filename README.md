@@ -2,7 +2,7 @@
 
 ## Quick start
 
-On the machine running your Paseo daemon, clone and prepare the plugin. Private-repository access requires GitHub authentication and collaborator access.
+On the machine running your Paseo daemon, clone and prepare the plugin. 
 
 ```bash
 gh repo clone ywy50/paseo-claude-auth-switch
@@ -50,11 +50,25 @@ Only per-session authentication choices are saved in `$PASEO_HOME/claude-auth/mo
 
 If a reload fails, the previous selection is restored. Reload that agent before continuing. A successful switch means the agent reload completed; API billing and later process startup can still fail independently.
 
-## Sharing
+## Releases and sharing
 
-This repository is private. Give collaborators access on GitHub; they can follow the quick start with their own Claude login and API key. Alternatively, share a source archive that excludes `node_modules` and have the recipient run `npm ci` and install the extracted directory.
+Install the latest Git source directly:
 
-The source has an MIT license. It includes no personal credentials or session state. You can make the repository public later without changing the plugin code. The stable plugin ID is `claude-auth`, preserving existing installations and state.
+```bash
+paseo plugin add git:ywy50/paseo-claude-auth-switch
+```
+
+To install a particular release, select its tag:
+
+```bash
+paseo plugin add git:ywy50/paseo-claude-auth-switch --ref v1.1.0
+```
+
+[GitHub releases](https://github.com/ywy50/paseo-claude-auth-switch/releases) include the version's changelog notes, a source archive, its SHA-256 checksum, and a provenance attestation. The plugin is platform-independent; there are no separate operating-system builds. See [CHANGELOG.md](CHANGELOG.md) for changes and [docs/releasing.md](docs/releasing.md) for the release procedure.
+
+The source has an MIT license and includes no personal credentials or session state. Recipients use their own Claude login and API key. The stable plugin ID is `claude-auth`, preserving existing installations and state.
+
+The Paseo registry reviews a pinned commit. Publishing a GitHub release does not automatically update an approved registry listing.
 
 ## Development
 
