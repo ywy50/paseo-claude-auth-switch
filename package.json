@@ -1,0 +1,36 @@
+{
+  "name": "paseo-claude-auth-switch",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@getpaseo/client": "0.15.1",
+    "@getpaseo/plugin": "0.15.1",
+    "@types/node": "^22",
+    "@types/react": "^19.3.0",
+    "react": "^19.1.0",
+    "react-native": "^0.81.5",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9",
+    "zod": "^4"
+  },
+  "description": "Switch existing Paseo Claude sessions between your regular login and an API key.",
+  "license": "MIT",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test test.mjs test-client.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ywy50/paseo-claude-auth-switch.git"
+  },
+  "files": [
+    "paseo-plugin.json",
+    "index.client.tsx",
+    "index.server.ts",
+    "client/",
+    "shared/",
+    "README.md",
+    "LICENSE"
+  ]
+}
