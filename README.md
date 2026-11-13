@@ -15,9 +15,9 @@ Create the key file on that same machine, then paste only your Anthropic API key
 
 ```bash
 mkdir -p ~/.secrets
-touch ~/.secrets/claudeapi
-chmod 600 ~/.secrets/claudeapi
-nano ~/.secrets/claudeapi
+touch ~/.secrets/paseo-claudeapi
+chmod 600 ~/.secrets/paseo-claudeapi
+nano ~/.secrets/paseo-claudeapi
 ```
 
 Enable plugins in Paseo's host settings if they are disabled. Both the daemon and every desktop or mobile client must support Paseo plugins; use Paseo 0.15.1 or later.
@@ -32,9 +32,17 @@ The plugin reloads only the selected Claude agent. It does not restart the Paseo
 
 It targets Paseo's built-in `claude` provider, including existing sessions. It does not switch Codex sessions, create a separate provider, or require a separate authentication page.
 
+## Configure the key file
+
+Open the plugin’s **Claude Auth Switch** settings page in Paseo. Set **API key file** to an absolute path or a path starting with `~/`, then select **Save path**. The default is `~/.secrets/paseo-claudeapi`.
+
+The path belongs to the daemon machine, even when you edit it from another computer. Settings store only the path, never the key. Changes apply at the next API session launch or authentication switch; already running sessions keep their current credentials until reopened. No daemon restart is needed.
+
+Relative and empty paths are rejected. The file must exist and contain one nonempty line. Changing the path does not copy, create, or move a secret file.
+
 ## Credentials and state
 
-The key lives at `~/.secrets/claudeapi` on the daemon machine. Remote clients receive controls from that daemon; they do not need a separate plugin installation or a copy of the key.
+By default, the key lives at `~/.secrets/paseo-claudeapi` on the daemon machine. Remote clients receive controls from that daemon; they do not need a separate plugin installation or a copy of the key.
 
 API mode reads the file at each launch and supplies `ANTHROPIC_API_KEY`, clearing inherited OAuth-token and auth-token environment overrides. Regular mode clears the API-key environment override and uses your existing Claude login. Sessions with no saved selection keep their original environment. A global Claude `apiKeyHelper` or API-key settings can override the intended regular-login behavior; configure those separately.
 
@@ -63,7 +71,7 @@ npm run typecheck
 npm test
 ```
 
-Tests use a fake key and a temporary home. They cover switching both ways, retaining session identity, persistence, busy-turn rejection, failed-reload rollback, and controls for existing sessions. They do not make model API calls.
+Tests use a fake key and a temporary home. They cover switching both ways, retaining session identity, persistence, busy-turn rejection, failed-reload rollback, controls for existing sessions, default and custom key paths, key rotation, and missing files. They do not make model API calls.
 
 After editing an installed directory plugin, reload that plugin:
 

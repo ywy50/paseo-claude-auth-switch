@@ -2,9 +2,11 @@ import type { PluginServerContext } from "@getpaseo/plugin/server";
 import { readFile, mkdir, writeFile, rename } from "node:fs/promises";
 import { homedir } from "node:os";
 import { join } from "node:path";
+import { preferences } from "./shared/settings";
 import { state, choose, modesSchema, report } from "./shared/rpc";
 type Mode = "regular" | "api";
 export default function contribute(server: PluginServerContext) {
+  const settings = server.registerSettings(preferences);
   const dir = join(
     process.env.PASEO_HOME || join(homedir(), ".paseo"),
     "claude-auth",
@@ -32,9 +34,17 @@ export default function contribute(server: PluginServerContext) {
     await saving;
   }
   async function key() {
-    const value = (
-      await readFile(join(homedir(), ".secrets/claudeapi"), "utf8")
-    ).trim();
+    const current = await settings.read();
+    if (current.status !== "ready")
+      throw new Error(
+        "Fix the API key file path in Claude Auth Switch settings first.",
+      );
+    const configured = current.values.keyFile;
+    const filePath =
+      configured.startsWith("~/") || configured.startsWith("~\\")
+        ? join(homedir(), configured.slice(2))
+        : configured;
+    const value = (await readFile(filePath, "utf8")).trim();
     if (!value || /[\r\n]/.test(value))
       throw new Error("API key file must contain one nonempty line.");
     return value;
