@@ -1,0 +1,9 @@
+Switch an existing Claude conversation in Paseo between your regular Claude login and an Anthropic API key. Open the authentication picker above that session's message composer, choose the credentials, and keep using the same conversation. Each session remembers its own selection. The workspace header offers the same controls.
+
+Switching reopens only the selected Claude agent. Wait for its current turn to finish first. Choose the model separately through the session's normal model picker.
+
+Use Paseo 0.15.1 or later on both the daemon host and every client. Claude Code must already be installed and your regular Claude login configured on the daemon machine. In the plugin's Claude Auth Switch settings, choose an absolute key-file path or a path starting with `~/`. The default is `~/.secrets/paseo-claudeapi`; the file must contain only your API key. Paths refer to the daemon machine, including when you use a remote client.
+
+API mode reads the file at each launch, supplies the key to Claude Code, and clears inherited OAuth-token and auth-token environment overrides. Regular mode clears the API-key environment override and uses your existing login. Global Claude API-key settings or an `apiKeyHelper` can affect which credentials Claude actually uses. Sessions without a saved selection keep their original environment.
+
+The plugin stores only the file path and per-session authentication selections. It never sends the key to the Paseo client. Claude Code uses the key for its normal API requests. Changing the path takes effect the next time the agent opens; running sessions retain their current credentials. A reload failure restores the previous selection, and you may need to reload that agent before continuing. Successful reload does not verify API billing or guarantee that subsequent model requests will succeed.
