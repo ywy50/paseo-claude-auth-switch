@@ -2,13 +2,10 @@
 
 ## Quick start
 
-On the machine running your Paseo daemon, clone and prepare the plugin.
+On the machine running your Paseo daemon, install the reviewed registry version:
 
 ```bash
-gh repo clone ywy50/paseo-claude-auth-switch
-cd paseo-claude-auth-switch
-npm ci
-paseo plugin add .
+paseo plugin add ywy50/claude-auth-switch
 ```
 
 Create the key file on that same machine, then paste only your Anthropic API key into it:
@@ -23,6 +20,18 @@ nano ~/.secrets/paseo-claudeapi
 Enable plugins in Paseo's host settings if they are disabled. Both the daemon and every desktop or mobile client must support Paseo plugins; use Paseo 0.15.1 or later.
 
 Open an existing **Claude** session. Above its message composer, open **Claude: regular login** and choose **Use API key**. Choose **Use regular login** to switch back. Wait for the current turn to finish before switching. Choose the model through the session's normal model picker.
+
+## Interface previews
+
+The authentication picker stays above the session composer:
+
+![Authentication picker with API key selected](assets/picker.png)
+
+The settings screen chooses the key file on the daemon machine:
+
+![Key file settings with the default path](assets/settings.png)
+
+These previews render the plugin's real settings component and menu descriptors using demo host data. The surrounding host layout is a preview fixture, not a full Paseo window. They contain no real session content or credentials.
 
 ## What it does
 
@@ -61,7 +70,7 @@ paseo plugin add git:ywy50/paseo-claude-auth-switch
 To install a particular release, select its tag:
 
 ```bash
-paseo plugin add git:ywy50/paseo-claude-auth-switch --ref v1.1.0
+paseo plugin add git:ywy50/paseo-claude-auth-switch --ref v1.1.1
 ```
 
 [GitHub releases](https://github.com/ywy50/paseo-claude-auth-switch/releases) include the version's changelog notes, a source archive, its SHA-256 checksum, and a provenance attestation. The plugin is platform-independent; there are no separate operating-system builds. See [CHANGELOG.md](CHANGELOG.md) for changes and [docs/releasing.md](docs/releasing.md) for the release procedure.
@@ -72,7 +81,16 @@ The Paseo registry reviews a pinned commit. Publishing a GitHub release does not
 
 ## Development
 
-Install dependencies:
+Clone and prepare a local directory installation:
+
+```bash
+gh repo clone ywy50/paseo-claude-auth-switch
+cd paseo-claude-auth-switch
+npm ci
+paseo plugin add .
+```
+
+Install dependencies again after pulling changes:
 
 ```bash
 npm ci
@@ -92,3 +110,20 @@ After editing an installed directory plugin, reload that plugin:
 ```bash
 paseo plugin reload claude-auth
 ```
+
+## Recreate the previews
+
+Install the development dependencies, then download the headless browser:
+
+```bash
+npm ci
+npx playwright install chromium
+```
+
+Render the previews and icon:
+
+```bash
+npm run screenshots
+```
+
+The preview server binds only to loopback and closes when the capture finishes. The capture exercises both authentication choices and saving a custom path using a fake host; it never opens a real Claude session or reads a key file.

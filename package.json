@@ -1,15 +1,19 @@
 {
   "name": "paseo-claude-auth-switch",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "type": "module",
   "devDependencies": {
     "@getpaseo/client": "0.15.1",
     "@getpaseo/plugin": "0.15.1",
+    "@playwright/test": "^1.65.1",
     "@types/node": "^22",
     "@types/react": "^19.3.0",
+    "esbuild": "^0.28.2",
     "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-native": "^0.81.5",
+    "react-native-web": "^0.21.2",
     "tsx": "^4.23.15",
     "typescript": "^5.9",
     "zod": "^4"
@@ -18,7 +22,8 @@
   "license": "MIT",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "node --import tsx --test test.mjs test-client.mjs test-release.mjs"
+    "test": "node --import tsx --test test.mjs test-client.mjs test-release.mjs",
+    "screenshots": "node tools/screenshots.mjs"
   },
   "repository": {
     "type": "git",
@@ -32,6 +37,7 @@
     "client/",
     "shared/",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "assets/"
   ]
 }

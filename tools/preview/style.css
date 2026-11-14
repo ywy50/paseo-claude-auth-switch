@@ -1,0 +1,175 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  background: #101614;
+  color: #e6ebe8;
+  font:
+    16px -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: default;
+}
+button:focus-visible {
+  outline: 2px solid #87d0a1;
+  outline-offset: 3px;
+}
+.frame {
+  width: 960px;
+  min-height: 600px;
+  background: #1b201e;
+  border: 1px solid #35433c;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 40px auto;
+  box-shadow: 0 20px 60px #0005;
+}
+header {
+  height: 66px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #343d37;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+.brand svg {
+  color: #a4d8b6;
+}
+.demo {
+  color: #929f97;
+  font-size: 13px;
+}
+.session {
+  padding: 30px 48px 24px;
+}
+.chat-title {
+  color: #a4b4a9;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+.message {
+  margin: 20px 0 12px 150px;
+  padding: 18px 22px;
+  border-radius: 14px;
+  background: #343d38;
+  width: max-content;
+  max-width: 100%;
+}
+.answer {
+  color: #b8c6bd;
+  margin: 22px 0;
+  font-size: 15px;
+}
+.composer-area {
+  margin-top: 155px;
+}
+.pill-anchor {
+  position: relative;
+  width: max-content;
+}
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #232c26;
+  border: 1px solid #4b6655;
+  border-radius: 20px;
+  padding: 8px 13px;
+  font-size: 14px;
+  color: #b5e2c4;
+}
+.chevron {
+  color: #96a99d;
+  margin-left: 4px;
+}
+.menu {
+  position: absolute;
+  bottom: 45px;
+  left: 0;
+  background: #262e29;
+  border: 1px solid #56645b;
+  border-radius: 9px;
+  padding: 6px;
+  width: 235px;
+  box-shadow: 0 10px 30px #0007;
+}
+.menu button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  padding: 12px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.menu button:hover:not(:disabled) {
+  background: #3a4940;
+}
+.menu button:disabled {
+  color: #a4b7aa;
+}
+.check {
+  color: #94d2aa;
+  font-size: 19px;
+  line-height: 16px;
+}
+.composer {
+  margin-top: 12px;
+  border: 1px solid #414e46;
+  border-radius: 14px;
+  padding: 20px;
+  color: #89988f;
+  background: #202722;
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 32px;
+  font-size: 13px;
+}
+.send {
+  margin-left: auto;
+  background: #8ecda4;
+  color: #17271d;
+  border-radius: 50%;
+  padding: 5px 9px;
+  font-size: 18px;
+}
+.settings {
+  padding: 28px 38px 44px;
+  min-height: 465px;
+}
+.section-title {
+  color: #a4b4a9;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+}
+footer {
+  border-top: 1px solid #343d37;
+  color: #93a79a;
+  font-size: 13px;
+  padding: 18px 30px;
+}

@@ -4,5 +4,10 @@
   "description": "Switch an existing Claude conversation between regular login and a local API key.",
   "requirements": {
     "paseo": ">=0.15.1"
-  }
+  },
+  "icon": "assets/icon.png",
+  "media": [
+    "assets/picker.png",
+    "assets/settings.png"
+  ]
 }
